@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #f4f4f4;
+}
+#container {
+    width: 100%;
+    margin: 10% 0;
+    text-align: center;
+}
+#picker {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 5%;
+}
+.color {
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 5%;
+    border: 8px solid #f4f4f4;
+    box-shadow: 5px 5px 0 3px #ccc;
+}
+#picker input {
+    outline: 0;
+}
+#picker input[type=range] {
+    width: 400px;
+    height: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    -webkit-appearance: none;
+    background-color: #888;
+}
+#hue {
+    background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+}
+#saturation {
+    background: linear-gradient(to right, hsl(180,0%,50%), hsl(180,100%,50%));
+}
+#lightness {
+    background: linear-gradient(to right, hsl(180,100%,0%), hsl(180,100%,50%), hsl(180,100%,100%));
+}
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 5px solid rgba(10,10,10,0.7);
+    border-radius: 50%;
+}
+
+#picker input[type=number] {
+    width: 30px;
+    padding: 3px 7px;
+    background-color: #eee;
+    border: 0;
+    font-size: 1.3em;
+    border-radius: 5px;
+}
+
+#picker input[type=number]::-webkit-inner-spin-button,
+#picker input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
