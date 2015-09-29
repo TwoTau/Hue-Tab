@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+
+    "name": "New Tab Page HSL Color Picker",
+    "description": "A HSL color picker on a new tab page",
+    "version": "1.0",
+
+    "chrome_url_overrides": {
+        "newtab": "newtab.html"
+    },
+
+    "background": {
+        "scripts": [
+            "newtab.js"
+        ],
+        "persistent": true
+    }
+}
