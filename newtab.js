@@ -10,13 +10,7 @@ window.onload = function() {
         l: document.getElementsByClassName("output")[2]
     };
 
-    color.h.value = num.h.value = Math.floor(Math.random()*360);
-    color.s.value = num.s.value = Math.floor(Math.random()*50)+50;
-    color.l.value = num.l.value = Math.floor(Math.random()*40)+30;
-    setH();
-    setS();
-    setL();
-    setColor();
+    setRandomColor();
 
     color.h.oninput = function() {
         num.h.value = color.h.value;
@@ -24,14 +18,34 @@ window.onload = function() {
         setL();
         setColor();
     };
+    num.h.oninput = function() {
+        color.h.value = num.h.value;
+        setS();
+        setL();
+        setColor();
+    };
+
     color.s.oninput = function() {
         num.s.value = color.s.value;
         setH();
         setL();
         setColor();
     };
+    num.s.oninput = function() {
+        color.s.value = num.s.value;
+        setH();
+        setL();
+        setColor();
+    };
+
     color.l.oninput = function() {
         num.l.value = color.l.value;
+        setH();
+        setS();
+        setColor();
+    };
+    num.l.oninput = function() {
+        color.l.value = num.l.value;
         setH();
         setS();
         setColor();
@@ -50,4 +64,18 @@ window.onload = function() {
     function setL() {
         color.l.style.background = "linear-gradient(to right, hsl(" + color.h.value + "," + color.s.value + "%,0%), hsl(" + color.h.value + "," + color.s.value + "%,50%), hsl(" + color.h.value + "," + color.s.value + "%,100%))";
     }
+
+    function setRandomColor() {
+        color.h.value = num.h.value = Math.floor(Math.random()*360);
+        color.s.value = num.s.value = Math.floor(Math.random()*50)+50;
+        color.l.value = num.l.value = Math.floor(Math.random()*40)+30;
+        setH();
+        setS();
+        setL();
+        setColor();
+    }
+
+    document.getElementById("random").onclick = function() {
+        setRandomColor();
+    };
 };
