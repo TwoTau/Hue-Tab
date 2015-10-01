@@ -52,7 +52,7 @@ window.onload = function() {
     };
 
     function setColor() {
-        document.getElementsByClassName("color")[0].style.background = "hsl(" + color.h.value + "," + color.s.value + "%," + color.l.value + "%)";
+        document.getElementById("color").style.background = "hsl(" + color.h.value + "," + color.s.value + "%," + color.l.value + "%)";
     }
 
     function setH() {
@@ -73,9 +73,19 @@ window.onload = function() {
         setS();
         setL();
         setColor();
+        var rgb = hslToRgb(color.h.value, color.s.value, color.l.value);
+        document.getElementById("color").setAttribute("data-color", rgb);
     }
 
     document.getElementById("random").onclick = function() {
         setRandomColor();
     };
+
+    function hslToRgb(h, s, l) {
+        var r = 0,
+            g = 0,
+            b = 0;
+
+        return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
 };
