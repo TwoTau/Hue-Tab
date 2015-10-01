@@ -10,39 +10,25 @@ body {
     margin: 10% 0;
     text-align: center;
 }
-#controls {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-}
-#leftArrow, #rightArrow {
-    width: 0;
-	height: 0;
-    display: inline-block;
-    vertical-align: middle;
-    border-top: 30px solid transparent;
-	border-bottom: 30px solid transparent;
-}
-#leftArrow {
-	border-right: 30px solid #444;
-}
-#rightArrow {
-	border-left: 30px solid #444;
-}
 #random {
-    vertical-align: middle;
+    position: absolute;
+    top: 40%;
+    left: 5%;
     width: 45px;
     height: 45px;
-    margin: 20px;
-    background-color: #444;
-    display: inline-block;
+    border-radius: 50%;
+    background-color: #999;
+    transition: 0.2s;
+    border: 8px solid #999;
+} #random:hover {
+    background-color: #555;
 }
 #picker {
     vertical-align: middle;
     display: inline-block;
     padding: 5%;
 }
-.color {
+#color {
     vertical-align: middle;
     display: inline-block;
     border-radius: 50%;
@@ -50,6 +36,16 @@ body {
     background: #ddd;
     border: 8px solid #f4f4f4;
     box-shadow: 5px 5px 0 3px #ccc;
+    position: relative;
+}
+#color::after {
+    position: absolute;
+    text-align: center;
+    bottom: -20%;
+    left: 40%;
+    font-family: "Open Sans";
+    font-size: 1.5em;
+    content: attr(data-color);
 }
 #picker input {
     outline: 0;
