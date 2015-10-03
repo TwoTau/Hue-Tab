@@ -3,7 +3,8 @@
     padding: 0;
 }
 body {
-    background: #f4f4f4;
+    background-color: #f4f4f4;
+    font-family: "Open Sans", sans-serif;
 }
 #container {
     width: 100%;
@@ -14,75 +15,94 @@ body {
     position: absolute;
     top: 40%;
     left: 5%;
-    width: 45px;
-    height: 45px;
+    width: 70px;
+    height: 70px;
+    background-color: rgba(200, 200, 200, 0.4);
+    box-shadow: 3px 3px 0 0 rgba(10, 10, 10, 0.4);
+    border: none;
+    outline: none;
     border-radius: 50%;
-    background-color: #999;
+    color: #222;
+    font: 1.2em "Open Sans", sans-serif;
     transition: 0.2s;
-    border: 8px solid #999;
-} #random:hover {
-    background-color: #555;
+}
+#random:hover {
+    box-shadow: 1px 1px 0 0 rgba(10, 10, 10, 0.3);
+}
+#random:focus {
+    color: #0a1dad;
 }
 #picker {
-    vertical-align: middle;
     display: inline-block;
+    vertical-align: middle;
     padding: 5%;
 }
 #color {
-    vertical-align: middle;
     display: inline-block;
-    border-radius: 50%;
+    vertical-align: middle;
     width: 200px;
     height: 115px;
+    padding-top: 85px;
     background: #ddd;
     border: 8px solid #f4f4f4;
-    box-shadow: 5px 5px 0 3px #ccc;
-    position: relative;
-    font-family: "Open Sans";
+    border-radius: 50%;
+    box-shadow: 5px 5px 0 3px rgba(10, 10, 10, 0.2);
     font-size: 1.5em;
-    padding-top: 85px;
     text-align: center;
+    transition: 0.3s;
+}
+#color.light {
+    color: #222;
+}
+#color.dark {
+    color: #ccc;
 }
 #picker input {
     outline: 0;
 }
 #picker input[type=range] {
+    -webkit-appearance: none;
+    margin: 10px;
     width: 410px;
     height: 22px;
-    margin: 10px;
-    border-radius: 11px;
-    -webkit-appearance: none;
     background-color: #888;
+    border-radius: 11px;
 }
 #hue {
     background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
 }
 #saturation {
-    background: linear-gradient(to right, hsl(180,0%,50%), hsl(180,100%,50%));
+    background: linear-gradient(to right, hsl(180, 0%, 50%), hsl(180, 100%, 50%));
 }
 #lightness {
-    background: linear-gradient(to right, hsl(180,100%,0%), hsl(180,100%,50%), hsl(180,100%,100%));
+    background: linear-gradient(to right, hsl(180, 100%, 0%), hsl(180, 100%, 50%), hsl(180, 100%, 100%));
 }
 ::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 22px;
     height: 22px;
-    border: 5px solid rgba(10,10,10,0.7);
+    border: 5px solid rgba(10, 10, 10, 0.7);
     border-radius: 50%;
+    transition: 0.2s;
 }
-
+::-webkit-slider-thumb:hover {
+    border: 5px solid #111;
+}
 #picker input[type=number] {
     width: 30px;
     padding: 3px 7px;
     background-color: transparent;
     border: 0;
-    font-size: 1.3em;
-    /*border-radius: 5px;*/
-    font-family: "Open Sans";
+    font: 1.3em "Open Sans", sans-serif;
 }
-
 #picker input[type=number]::-webkit-inner-spin-button,
 #picker input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+.light #picker input[type=number] {
+    color: #111;
+}
+.dark #picker input[type=number] {
+    color: #ccc;
 }
