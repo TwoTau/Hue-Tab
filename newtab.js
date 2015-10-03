@@ -13,39 +13,39 @@ window.onload = function() {
     setRandomColor();
 
     color.h.oninput = function() {
-        num.h.value = color.h.value;
+        num.h.value = this.value;
         setS();
         setL();
         setColor();
     };
     num.h.oninput = function() {
-        color.h.value = num.h.value;
+        color.h.value = this.value;
         setS();
         setL();
         setColor();
     };
 
     color.s.oninput = function() {
-        num.s.value = color.s.value;
+        num.s.value = this.value;
         setH();
         setL();
         setColor();
     };
     num.s.oninput = function() {
-        color.s.value = num.s.value;
+        color.s.value = this.value;
         setH();
         setL();
         setColor();
     };
 
     color.l.oninput = function() {
-        num.l.value = color.l.value;
+        num.l.value = this.value;
         setH();
         setS();
         setColor();
     };
     num.l.oninput = function() {
-        color.l.value = num.l.value;
+        color.l.value = this.value;
         setH();
         setS();
         setColor();
@@ -54,7 +54,7 @@ window.onload = function() {
     function setColor() {
         var rgb = hslToHex(color.h.value, color.s.value, color.l.value);
         document.getElementById("color").style.background = document.getElementById("color").innerHTML = rgb;
-        document.getElementById("color").style.color = (color.l.value > 30) ? "#111" : "#999";
+        document.getElementById("color").className = (color.l.value > 30) ? "light" : "dark";
     }
 
     function setH() {
@@ -136,4 +136,11 @@ window.onload = function() {
 
     	return v*255;
     }
+
+    function setBackgroundColor() {
+        document.body.style.backgroundColor = document.getElementById("color").style.borderColor = hslToHex(color.h.value, color.s.value, color.l.value);
+        document.body.className = (color.l.value > 30) ? "light" : "dark";
+    }
+
+    document.getElementById("color").onclick = setBackgroundColor;
 };
