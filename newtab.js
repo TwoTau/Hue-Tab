@@ -1,4 +1,20 @@
 window.onload = function() {
+    var options = {};
+    chrome.storage.sync.get({
+        "clickBGChange": true,
+        "sampleHexVisible": true,
+        "schemeVisible": true,
+        "schemeHexVisible": true,
+        "randomVisible": true,
+        "fontfamily": "Open Sans",
+        "fontsize": 12,
+        "uppercaseHex": true,
+        "startColor": "random",
+        "startBgColor": "#FFFFFF"
+    }, function(items) {
+        options = items;
+    });
+
     var color = {
         h: document.getElementById("hue"),
         s: document.getElementById("saturation"),
@@ -91,8 +107,12 @@ window.onload = function() {
     document.getElementById("random").onclick = setRandomColor;
 
     function setBackgroundColor() {
-        document.body.style.backgroundColor = document.getElementById("container").style.borderColor = "#" + hslToHex(num.h.value, num.s.value, num.l.value);
-        document.body.className = (num.l.value > 35) ? "light" : "dark";
+        setBackgroundColorTo("#" + hslToHex(num.h.value, num.s.value, num.l.value), (num.l.value > 35));
+    }
+
+    function setBackgroundColorTo(hex, isdark) {
+        document.body.style.backgroundColor = document.getElementById("container").style.borderColor = hex;
+        document.body.className = (isdark) ? "light" : "dark";
     }
 
     document.getElementById("color").onclick = setBackgroundColor;
