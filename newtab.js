@@ -7,12 +7,16 @@ window.onload = function() {
         "schemeHexVisible": true,
         "randomVisible": true,
         "fontfamily": "Open Sans",
-        "fontsize": 12,
+        "fontsize": 100,
         "uppercaseHex": true,
         "startColor": "random",
         "startBgColor": "#FFFFFF"
     }, function(items) {
         options = items;
+        if(!items.randomVisible) document.getElementById("random").style.display = "none";
+        document.body.style.fontSize = Math.floor(items.fontsize)/100 + "em";
+        document.body.style.fontFamily = items.fontfamily;
+        if(items.schemeVisible) document.getElementById("scheme").style.display = "block";
     });
 
     var color = {
@@ -131,17 +135,18 @@ window.onload = function() {
         scheme[2].style.backgroundColor = "#" + hex[2];
         scheme[2].innerHTML = hex[2];
     }
+    function hslToHex(h, s, l) {
+        var hex = hslToRgb(h, s, l);
+
+        ["r", "g", "b"].forEach(function(c) {
+            hex[c] = Math.round(hex[c]).toString(16);
+            if(options.uppercaseHex) hex[c] = hex[c].toUpperCase();
+            if(hex[c].length < 2) hex[c] = "0" + hex[c];
+        });
+
+        return hex.r + hex.g + hex.b;
+    }
 };
-function hslToHex(h, s, l) {
-    var hex = hslToRgb(h, s, l);
-
-    ["r", "g", "b"].forEach(function(c) {
-        hex[c] = Math.round(hex[c]).toString(16).toUpperCase();
-        if(hex[c].length < 2) hex[c] = "0" + hex[c];
-    });
-
-    return hex.r + hex.g + hex.b;
-}
 
 function hslToRgb(h, s, l) {
 	var m1, m2, hue;
