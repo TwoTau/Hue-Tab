@@ -41,11 +41,23 @@
 				font-size: 1.1em;
 				text-shadow: 1px 1px 0 #ccc;
 			}
+			#container {
+			    display: -webkit-flex;
+			    display: flex;
+			    flex-flow: space-around;
+			    align-items: stretch;
+			    flex-flow: row wrap;
+			    justify-content: space-around;
+			    padding: 20px 10px 0;
+			}
 			input, button {
 				background: transparent;
 				border: 0;
 				outline: 0;
 				margin-bottom: 20px;
+			}
+			input[type=text] {
+				width: 110px;
 			}
 			input[type=checkbox] {
 				padding: 20px;
@@ -57,16 +69,19 @@
 				margin: 20px;
 			}
 			fieldset {
-				border: 0;
-				border-left: 3px solid #777;
-				padding-left: 30px;
-				margin: 20px 30px;
+				border: 1px solid #aaa;
+				padding-left: 25px;
+				padding-right: 5px;
+				flex-grow: 1;
+			} fieldset:not(:last-of-type) {
+				border-right: 0;
 			}
 			legend {
 				font-size: 1.2em;
 				border-bottom: 1px solid #aaa;
 				margin-bottom: 10px;
 				margin-left: -10px;
+				padding: 0 4px;
 			}
 			label {
 				margin-left: -10px;
@@ -80,50 +95,52 @@
 			<a href="https://github.com/TwoTau/New-Tab-Color-Picker">Github page</a>
 		</header>
 
-		<fieldset>
-			<legend>Color Sample</legend>
-			<input type="checkbox" id="clickBGChange"> Click sample to set background color
-			<br>
-			<input type="checkbox" id="sampleHexVisible"> Hex visible
-		</fieldset>
+		<div id="container">
+			<fieldset>
+				<legend>Color Sample</legend>
+				<input type="checkbox" id="clickBGChange"> Click sample to set background color
+				<br>
+				<input type="checkbox" id="sampleHexVisible"> Hex visible
+			</fieldset>
 
-		<fieldset>
-			<legend>Color Scheme</legend>
-			<input type="checkbox" id="schemeVisible"> Color visible
-			<br>
-			<input type="checkbox" id="schemeHexVisible"> Hex visible
-		</fieldset>
+			<fieldset>
+				<legend>Color Scheme</legend>
+				<input type="checkbox" id="schemeVisible"> Color visible
+				<br>
+				<input type="checkbox" id="schemeHexVisible"> Hex visible
+			</fieldset>
 
-		<fieldset>
-			<legend>Start</legend>
-			<label for="startColor">Color on start</label>
-			<br>
-			<input type="radio" name="startColor" value="random"> Random
-			<br>
-			<input type="radio" name="startColor" value="custom"> Custom <input type="color" id="startColorCustom">
-			<br>
-			<label for="startBG">Background color on start</label>
-			<br>
-			<input type="radio" name="startBg" value="random"> Random
-			<br>
-			<input type="radio" name="startBg" value="match"> Match start color
-			<br>
-			<input type="radio" name="startBg" value="custom"> Custom <input type="color" id="startBgCustom">
-		</fieldset>
+			<fieldset>
+				<legend>Start</legend>
+				<label for="startColor">Color on start</label>
+				<br>
+				<input type="radio" name="startColor" value="random"> Random
+				<br>
+				<input type="radio" name="startColor" value="custom"> Custom <input type="color" id="startColorCustom">
+				<br>
+				<label for="startBG">Background color on start</label>
+				<br>
+				<input type="radio" name="startBg" value="random"> Random
+				<br>
+				<input type="radio" name="startBg" value="match"> Match start color
+				<br>
+				<input type="radio" name="startBg" value="custom"> Custom <input type="color" id="startBgCustom">
+			</fieldset>
 
-		<fieldset>
-			<legend>Random Button</legend>
-			<input type="checkbox" id="randomVisible"> Visible
-		</fieldset>
+			<fieldset>
+				<legend>Random Button</legend>
+				<input type="checkbox" id="randomVisible"> Visible
+			</fieldset>
 
-		<fieldset>
-			<legend>Text</legend>
-			Font Family: <input type="text" id="fontfamily" value="Open Sans">
-			<br>
-			Font size: <input type="number" id="fontsize" min="10" max="40" value="12">
-			<br>
-			<input type="checkbox" id="uppercaseHex"> Uppercase hex
-		</fieldset>
+			<fieldset>
+				<legend>Text</legend>
+				Font Family: <input type="text" id="fontfamily" value="Open Sans">
+				<br>
+				Font size (%): <input type="number" id="fontsize" min="10" max="300" step="5" value="100">
+				<br>
+				<input type="checkbox" id="uppercaseHex"> Uppercase hex
+			</fieldset>
+		</div>
 
 		<button id="save">Save</button>
 		<script src="options.js"></script>
