@@ -1,5 +1,17 @@
 window.onload = function() {
     var options = {};
+
+    var color = {
+        h: document.getElementById("hue"),
+        s: document.getElementById("saturation"),
+        l: document.getElementById("lightness")
+    };
+    var num = {
+        h: document.getElementsByClassName("output")[0],
+        s: document.getElementsByClassName("output")[1],
+        l: document.getElementsByClassName("output")[2]
+    };
+
     chrome.storage.sync.get({
         "clickBGChange": true,
         "sampleHexVisible": true,
@@ -17,21 +29,20 @@ window.onload = function() {
         document.body.style.fontSize = Math.floor(items.fontsize)/100 + "em";
         document.body.style.fontFamily = items.fontfamily;
         if(items.schemeVisible) document.getElementById("scheme").style.display = "block";
+
+        if(items.startColor === "random") {
+            setRandomColor();
+        } else { // if user set startColor to be a hex color
+
+        }
+        if(items.startBgColor === "match") {
+            setBackgroundColor();
+        } else if(items.startBgColor === "random") {
+
+        } else { // if user set startBgColor to be a hex color
+
+        }
     });
-
-    var color = {
-        h: document.getElementById("hue"),
-        s: document.getElementById("saturation"),
-        l: document.getElementById("lightness")
-    };
-    var num = {
-        h: document.getElementsByClassName("output")[0],
-        s: document.getElementsByClassName("output")[1],
-        l: document.getElementsByClassName("output")[2]
-    };
-
-    setRandomColor();
-    setBackgroundColor();
 
     color.h.oninput = function() {
         num.h.value = this.value;
@@ -77,7 +88,7 @@ window.onload = function() {
         var hex = hslToHex(num.h.value, num.s.value, num.l.value);
         colorSample.style.background = "#" + hex;
         colorSample.innerHTML = hex;
-        colorSample.className = document.getElementById("scheme").className = (num.l.value > 35) ? "light" : "dark";
+        colorSample.className = document.getElementById("scheme").className = isDark(num.l.value) ? "light" : "dark";
         setScheme();
     }
 
@@ -99,9 +110,10 @@ window.onload = function() {
     }
 
     function setRandomColor() {
-        color.h.value = num.h.value = Math.floor(Math.random()*360);
-        color.s.value = num.s.value = Math.floor(Math.random()*50)+50;
-        color.l.value = num.l.value = Math.floor(Math.random()*40)+30;
+        var randomColor = randomHSL();
+        color.h.value = num.h.value = randomColor.h;
+        color.s.value = num.s.value = randomColor.s;
+        color.l.value = num.l.value = randomColor.l;
         setH();
         setS();
         setL();
@@ -111,7 +123,7 @@ window.onload = function() {
     document.getElementById("random").onclick = setRandomColor;
 
     function setBackgroundColor() {
-        setBackgroundColorTo("#" + hslToHex(num.h.value, num.s.value, num.l.value), (num.l.value > 35));
+        setBackgroundColorTo("#" + hslToHex(num.h.value, num.s.value, num.l.value), isDark(num.l.value));
     }
 
     function setBackgroundColorTo(hex, isdark) {
@@ -193,4 +205,16 @@ function hueToRgb(m1, m2, hue) {
     }
 
 	return v*255;
+}
+
+function randomHSL() {
+    return {
+        h: Math.floor(Math.random()*360),
+        s: Math.floor(Math.random()*40)+60,
+        l: Math.floor(Math.random()*40)+30
+    };
+}
+
+function isDark(lightnessValue) {
+    return lightnessValue < 35;
 }
