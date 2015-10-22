@@ -25,9 +25,28 @@ window.onload = function() {
         "startBgColor": "#FFFFFF"
     }, function(items) {
         options = items;
-        if(!items.randomVisible) document.getElementById("random").style.display = "none";
+
+        if(items.clickBGChange) document.getElementById("color").onclick = setBackgroundColor;
+
+        if(items.randomVisible) {
+            document.getElementById("random").onclick = setRandomColor;
+        } else {
+            document.getElementById("random").style.display = "none";
+        }
         document.body.style.fontSize = Math.floor(items.fontsize)/100 + "em";
         document.body.style.fontFamily = items.fontfamily;
+        if(!items.sampleHexVisible) {
+            document.getElementById("color").style.color = "rgba(0,0,0,0)";
+            document.getElementById("color").innerHTML = "";
+        }
+        if(items.schemeVisible) {
+            if(!items.schemeHexVisible) {
+                document.getElementById("scheme").style.color = "rgba(0,0,0,0)";
+            }
+        } else {
+            document.getElementById("scheme").style.display = "none";
+        }
+
         if(items.schemeVisible) document.getElementById("scheme").style.display = "block";
 
         if(items.startColor === "random") {
@@ -87,8 +106,8 @@ window.onload = function() {
         var colorSample = document.getElementById("color");
         var hex = hslToHex(num.h.value, num.s.value, num.l.value);
         colorSample.style.background = "#" + hex;
-        colorSample.innerHTML = hex;
-        colorSample.className = document.getElementById("scheme").className = isDark(num.l.value) ? "light" : "dark";
+        if(options.sampleHexVisible) colorSample.innerHTML = hex;
+        colorSample.className = document.getElementById("scheme").className = isDark(num.l.value);
         setScheme();
     }
 
@@ -120,18 +139,14 @@ window.onload = function() {
         setColor();
     }
 
-    document.getElementById("random").onclick = setRandomColor;
-
     function setBackgroundColor() {
         setBackgroundColorTo("#" + hslToHex(num.h.value, num.s.value, num.l.value), isDark(num.l.value));
     }
 
     function setBackgroundColorTo(hex, isdark) {
         document.body.style.backgroundColor = document.getElementById("container").style.borderColor = hex;
-        document.body.className = (isdark) ? "light" : "dark";
+        document.body.className = isdark;
     }
-
-    document.getElementById("color").onclick = setBackgroundColor;
 
     function setScheme() {
         var scheme = document.getElementsByClassName("color");
@@ -141,11 +156,13 @@ window.onload = function() {
             hslToHex(Math.abs(120+num.h.value)%360, num.s.value, num.l.value)
         ];
         scheme[0].style.backgroundColor = "#" + hex[0];
-        scheme[0].innerHTML = hex[0];
         scheme[1].style.backgroundColor = "#" + hex[1];
-        scheme[1].innerHTML = hex[1];
         scheme[2].style.backgroundColor = "#" + hex[2];
-        scheme[2].innerHTML = hex[2];
+        if(options.schemeHexVisible) {
+            scheme[0].innerHTML = hex[0];
+            scheme[1].innerHTML = hex[1];
+            scheme[2].innerHTML = hex[2];
+        }
     }
     function hslToHex(h, s, l) {
         var hex = hslToRgb(h, s, l);
@@ -216,5 +233,6 @@ function randomHSL() {
 }
 
 function isDark(lightnessValue) {
-    return lightnessValue < 35;
+    var isdark = (lightnessValue > 35) ? "light" : "dark";
+    return isdark;
 }
