@@ -1,31 +1,67 @@
-var saveButton = document.getElementById("save");
-saveButton.onclick = saveOptions;
+document.querySelectorAll("input:not([type=color])").forEach(inputElement => inputElement.addEventListener("change", saveOptions));
+document.querySelectorAll("input[type=color]").forEach(inputElement => {
+    inputElement.addEventListener("change", function() {
+        if(true) {
+            saveOptions();
+        }
+    });
+});
 
-document.addEventListener('DOMContentLoaded', restoreOptions);
+document.addEventListener("DOMContentLoaded", restoreOptions);
+
+function geti(elementId) {
+    return document.getElementById(elementId);
+}
 
 function saveOptions() {
-    var startColorRadios = document.getElementsByName("startColor");
-    var startColor = "random";
-    if(startColorRadios[1].checked) startColor = document.getElementById("startColorCustom").value;
+    var startColor;
+    if(geti("random-on-start").checked) {
+        startColor = "random";
+    } else if(geti("custom-on-start").checked) {
+        startColor = geti("start-color-custom").value;
+    }
 
-    var startBgColorRadios = document.getElementsByName("startBg");
-    var startBgColor = "random";
-    if(startBgColorRadios[1].checked) startBgColor = "match";
-    if(startBgColorRadios[2].checked) startBgColor = document.getElementById("startBgCustom").value;
+    var startBgColor;
+    if(geti("random-bg-on-start").checked) {
+        startBgColor = "random";
+    } else if(geti("match-bg-on-start").checked) {
+        startBgColor = "match";
+    } else if(geti("custom-bg-on-start").checked) {
+        startBgColor = geti("start-bg-custom").value;
+    }
+
+    var startBgColorIncognito;
+    if(geti("random-bg-on-incognito").checked) {
+        startBgColorIncognito = "random";
+    } else if(geti("match-bg-on-incognito").checked) {
+        startBgColorIncognito = "match";
+    } else if(geti("dark-bg-on-incognito").checked) {
+        startBgColorIncognito = "#222222";
+    } else if(geti("custom-bg-on-incognito").checked) {
+        startBgColorIncognito = geti("incognito-bg-custom").value;
+    }
 
     chrome.storage.sync.set({
-        "clickBGChange": document.getElementById("clickBGChange").checked,
-        "sampleHexVisible": document.getElementById("sampleHexVisible").checked,
-        "schemeVisible": document.getElementById("schemeVisible").checked,
-        "schemeHexVisible": document.getElementById("schemeHexVisible").checked,
-        "randomVisible": document.getElementById("randomVisible").checked,
-        "fontfamily": document.getElementById("fontfamily").value,
-        "fontsize": document.getElementById("fontsize").value,
-        "uppercaseHex": document.getElementById("uppercaseHex").checked,
+        "clickBGChange": geti("click-bg-change").checked,
+        "sampleHexVisible": geti("sample-hex-visible").checked,
+        "sampleNameVisible": geti("sample-name-visible").checked,
+        "schemeVisible": geti("scheme-visible").checked,
+        "schemeHexVisible": geti("scheme-hex-visible").checked,
+        "schemeClickSampleChange": geti("scheme-click-sample-change").checked,
+        "schemeClickBGChange": geti("scheme-click-bg-change").checked,
+        "randomVisible": geti("random-visible").checked,
+        "settingsVisible": geti("settings-visible").checked,
+        "fontfamily": geti("font-family").value,
+        "fontsize": geti("font-size").value,
+        "uppercaseHex": geti("uppercase-hex").checked,
         "startColor": startColor,
-        "startBgColor": startBgColor
+        "startBgColor": startBgColor,
+        "startBgColorIncognito": startBgColorIncognito
     }, function() {
-        saveButton.innerHTML = "Saved!";
+        geti("saved-banner").className = "slide-in";
+        setTimeout(function() {
+            geti("saved-banner").className = "slide-out";
+        }, 800);
     });
 }
 
@@ -33,39 +69,58 @@ function restoreOptions() {
     chrome.storage.sync.get({
         "clickBGChange": true,
         "sampleHexVisible": true,
+        "sampleNameVisible": false,
         "schemeVisible": true,
         "schemeHexVisible": true,
+        "schemeClickSampleChange": false,
+        "schemeClickBGChange": false,
         "randomVisible": true,
+        "settingsVisible": true,
         "fontfamily": "Open Sans",
-        "fontsize": 12,
+        "fontsize": 100,
         "uppercaseHex": true,
         "startColor": "random",
-        "startBgColor": "#FFFFFF"
+        "startBgColor": "random",
+        "startBgColorIncognito": "#222222"
     }, function(items) {
-        document.getElementById("clickBGChange").checked = items.clickBGChange;
-        document.getElementById("sampleHexVisible").checked = items.sampleHexVisible;
-        document.getElementById("schemeVisible").checked = items.schemeVisible;
-        document.getElementById("schemeHexVisible").checked = items.schemeHexVisible;
-        document.getElementById("randomVisible").checked = items.randomVisible;
-        document.getElementById("fontfamily").value = items.fontfamily;
-        document.getElementById("fontsize").value = items.fontsize;
-        document.getElementById("uppercaseHex").checked = items.uppercaseHex;
+        geti("click-bg-change").checked = items.clickBGChange;
+        geti("sample-hex-visible").checked = items.sampleHexVisible;
+        geti("sample-name-visible").checked = items.sampleNameVisible;
+        geti("scheme-visible").checked = items.schemeVisible;
+        geti("scheme-hex-visible").checked = items.schemeHexVisible;
+        geti("scheme-click-sample-change").checked = items.schemeClickSampleChange;
+        geti("scheme-click-bg-change").checked = items.schemeClickBGChange;
+        geti("random-visible").checked = items.randomVisible;
+        geti("settings-visible").checked = items.settingsVisible;
+        geti("font-family").value = items.fontfamily;
+        geti("font-size").value = items.fontsize;
+        geti("uppercase-hex").checked = items.uppercaseHex;
 
         if(items.startColor === "random") {
-            document.getElementsByName("startColor")[0].checked = true;
+            geti("random-on-start").checked = true;
         } else {
-            document.getElementsByName("startColor")[1].checked = true;
-            document.getElementById("startColorCustom").value = items.startColor;
+            geti("custom-on-start").checked = true;
+            geti("start-color-custom").value = items.startColor;
         }
-        
-        document.getElementsByName("startBg")[2].checked = false;
+
         if(items.startBgColor === "random") {
-            document.getElementsByName("startBg")[0].checked = true;
+            geti("random-bg-on-start").checked = true;
         } else if(items.startBgColor === "match") {
-            document.getElementsByName("startBg")[1].checked = true;
+            geti("match-bg-on-start").checked = true;
         } else {
-            document.getElementsByName("startBg")[2].checked = true;
-            document.getElementById("startBgCustom").value = items.startBgColor;
+            geti("custom-bg-on-start").checked = true;
+            geti("start-bg-custom").value = items.startBgColor;
+        }
+
+        if(items.startBgColorIncognito === "random") {
+            geti("random-bg-on-incognito").checked = true;
+        } else if(items.startBgColorIncognito === "match") {
+            geti("match-bg-on-incognito").checked = true;
+        } else if(items.startBgColorIncognito === "#222222") {
+            geti("dark-bg-on-incognito").checked = true;
+        } else {
+            geti("custom-bg-on-incognito").checked = true;
+            geti("incognito-bg-custom").value = items.startBgColorIncognito;
         }
     });
 }
