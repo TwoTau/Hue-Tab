@@ -1,13 +1,15 @@
 {
     "manifest_version": 2,
 
-    "name": "New Tab HSL",
-    "description": "A HSL color picker on a new tab page",
+    "name": "HueTab",
+    "description": "A customizable HSL color picker on every new tab page",
     "version": "1.0.0",
 
     "chrome_url_overrides": {
         "newtab": "newtab.html"
     },
+
+    "offline_enabled": true,
 
     "permissions": [
         "storage"

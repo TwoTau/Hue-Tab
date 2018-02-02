@@ -21,10 +21,6 @@ h1 a {
     color: #eee;
     letter-spacing: 2px;
 }
-h2 {
-    color: #ccc;
-    letter-spacing: 1px;
-}
 
 #group-container {
     display: flex;
