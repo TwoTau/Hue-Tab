@@ -5,7 +5,7 @@
 body {
     background: #222;
     color: #888;
-    font: 1.1em "Open Sans", sans-serif;
+    font: 1.1em "Open Sans", "Trebuchet MS", sans-serif;
     line-height: 1.8em;
 }
 header {
@@ -15,6 +15,14 @@ header {
 h4 {
     color: #aaa;
     letter-spacing: 0.2px;
+}
+header img {
+    float: left;
+    margin-right: 30px;
+}
+h1 {
+    font-size: 45px;
+    line-height: 45px;
 }
 h1 a {
     text-decoration: none;
