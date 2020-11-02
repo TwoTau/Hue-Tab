@@ -1,4 +1,7 @@
 # Hue Tab
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mhpnoeopnoemnkkklmmmpjecilooeaoe.svg?style=flat-square)](https://chrome.google.com/webstore/detail/hue-tab/mhpnoeopnoemnkkklmmmpjecilooeaoe) [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/mhpnoeopnoemnkkklmmmpjecilooeaoe.svg?style=flat-square)](https://chrome.google.com/webstore/detail/hue-tab/mhpnoeopnoemnkkklmmmpjecilooeaoe)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/mhpnoeopnoemnkkklmmmpjecilooeaoe.svg?style=flat-square)](https://chrome.google.com/webstore/detail/hue-tab/mhpnoeopnoemnkkklmmmpjecilooeaoe)
+
 Hue Tab is a Chrome extension that displays a HSL color picker on every new tab page.
 
 HSL (Hue, Saturation, and Lightness) is an intuitive way to represent colors.
