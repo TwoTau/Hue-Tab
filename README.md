@@ -8,7 +8,7 @@ HSL (Hue, Saturation, and Lightness) is an intuitive way to represent colors.
 
 **Hue** (0 - 360):
 <br>
-![Hue slider](https://user-images.githubusercontent.com/14433542/35491779-82f26412-045d-11e8-8ecd-a5150690645b.png)
+![Hccdfbdc6fd5e4b8ab6bbb1f2350653f0r](https://user-images.githubusercontent.com/43321080/206842366-6594445e-28e6-4311-89f9-6b2314803f37.jpg)[Hue slider]
 
 **Saturation** (0 - 100%):
 <br>
