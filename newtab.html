@@ -2,44 +2,46 @@
 <html lang="en-US">
 
 <head>
-	<meta charset="UTF-8">
-	<title>New Tab</title>
-	<link href="style.css" rel="stylesheet" />
-	<script src="ntc.js"></script>
-	<script src="util.js"></script>
-	<script src="newtab.js"></script>
+    <meta charset="UTF-8">
+    <title>New Tab</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="no-referrer">
+    <link href="style.css" rel="stylesheet" />
+    <script src="ntc.js"></script>
+    <script src="util.js"></script>
+    <script src="newtab.js"></script>
 </head>
 
 <body>
-	<div id="container" class="light">
-		<div id="picker">
-			<input id="hue" type="range" min="0" max="360" step="1" value="180" />
-			<input type="number" class="output" min="0" max="360" value="180" />
-			<br>
-			<input id="saturation" type="range" min="0" max="100" step="1" value="100" />
-			<input type="number" class="output" min="0" max="100" value="100" />
-			<br>
-			<input id="lightness" type="range" min="0" max="100" step="1" value="50" />
-			<input type="number" class="output" min="0" max="100" value="50" />
-			<br>
-		</div>
+    <div class="container">
+        <div class="picker">
+            <input class="hue" type="range" min="0" max="360" step="1" value="180" />
+            <input type="number" class="output" min="0" max="360" value="180" />
+            <input class="saturation" type="range" min="0" max="100" step="1" value="100" />
+            <input type="number" class="output" min="0" max="100" value="100" />
+            <input class="lightness" type="range" min="0" max="100" step="1" value="50" />
+            <input type="number" class="output" min="0" max="100" value="50" />
+        </div>
 
-		<div id="color" class="light">
-			<div id="inner-color">
-				<span id="colorhex"></span>
-				<span id="named-color"></span>
-			</div>
-		</div>
+        <div class="colors-container">
+            <div class="main-color color" class="light">
+                <div class="inner-color">
+                    <input type="text" class="main-color-hex editable" spellcheck="false" autocomplete="off" />
+                    <span class="main-color-name"></span>
+                </div>
+            </div>
 
-		<div id="scheme">
-			<div id="complementary" class="color"></div>
-			<div id="triadic-1" class="color"></div>
-			<div id="triadic-2" class="color"></div>
-		</div>
-	</div>
+            <div class="scheme">
+                <div id="complementary" class="color"></div>
+                <div id="triadic-1" class="color"></div>
+                <div id="triadic-2" class="color"></div>
+            </div>
+        </div>
+    </div>
 
-	<button id="random">Random</button>
-	<a id="settings" href="options.html" target="_blank">Settings</a>
+    <button class="random clickable">Random</button>
+    <a class="settings" href="options.html" target="_blank">Settings</a>
 </body>
 
 </html>

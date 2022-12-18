@@ -9,15 +9,27 @@ function geti(elementId) {
     return document.getElementById(elementId);
 }
 
-function saveOptions() {
-    var startColor;
+function saveOptions(event) {
+    const target = event.target;
+
+    if (target.checked) {
+        if (target.id === "sample-hex-copyable") {
+            // turning on copyable, so turn off editable
+            geti("sample-hex-editable").checked = false;
+        } else if (target.id === "sample-hex-editable") {
+            // turning on editable, so turn off copyable
+            geti("sample-hex-copyable").checked = false;
+        }
+    }
+
+    let startColor;
     if (geti("random-on-start").checked) {
         startColor = "random";
     } else if (geti("custom-on-start").checked) {
         startColor = geti("start-color-custom").value;
     }
 
-    var startBgColor;
+    let startBgColor;
     if (geti("random-bg-on-start").checked) {
         startBgColor = "random";
     } else if (geti("match-bg-on-start").checked) {
@@ -26,7 +38,7 @@ function saveOptions() {
         startBgColor = geti("start-bg-custom").value;
     }
 
-    var startBgColorIncognito;
+    let startBgColorIncognito;
     if (geti("random-bg-on-incognito").checked) {
         startBgColorIncognito = "random";
     } else if (geti("match-bg-on-incognito").checked) {
@@ -40,6 +52,8 @@ function saveOptions() {
     chrome.storage.sync.set({
         "clickBGChange": geti("click-bg-change").checked,
         "sampleHexVisible": geti("sample-hex-visible").checked,
+        "sampleHexEditable": geti("sample-hex-editable").checked,
+        "clickCopyHex": geti("sample-hex-copyable").checked,
         "sampleNameVisible": geti("sample-name-visible").checked,
         "schemeVisible": geti("scheme-visible").checked,
         "schemeHexVisible": geti("scheme-hex-visible").checked,
@@ -53,9 +67,9 @@ function saveOptions() {
         "startColor": startColor,
         "startBgColor": startBgColor,
         "startBgColorIncognito": startBgColorIncognito
-    }, function () {
+    }, function() {
         geti("saved-banner").className = "slide-in";
-        setTimeout(function () {
+        setTimeout(function() {
             geti("saved-banner").className = "slide-out";
         }, 800);
     });
@@ -65,6 +79,8 @@ function restoreOptions() {
     chrome.storage.sync.get({
         "clickBGChange": true,
         "sampleHexVisible": true,
+        "sampleHexEditable": true,
+        "clickCopyHex": false,
         "sampleNameVisible": false,
         "schemeVisible": true,
         "schemeHexVisible": true,
@@ -72,15 +88,17 @@ function restoreOptions() {
         "schemeClickBGChange": false,
         "randomVisible": true,
         "settingsVisible": true,
-        "fontfamily": "Open Sans",
+        "fontfamily": "Helvetica",
         "fontsize": 100,
         "uppercaseHex": true,
         "startColor": "random",
         "startBgColor": "random",
         "startBgColorIncognito": "#222222"
-    }, function (items) {
+    }, function(items) {
         geti("click-bg-change").checked = items.clickBGChange;
         geti("sample-hex-visible").checked = items.sampleHexVisible;
+        geti("sample-hex-copyable").checked = items.clickCopyHex;
+        geti("sample-hex-editable").checked = items.sampleHexEditable;
         geti("sample-name-visible").checked = items.sampleNameVisible;
         geti("scheme-visible").checked = items.schemeVisible;
         geti("scheme-hex-visible").checked = items.schemeHexVisible;

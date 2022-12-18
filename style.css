@@ -1,144 +1,207 @@
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
+    box-sizing: inherit;
+}
+
+html,
+body {
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 body {
     background: #aaa;
-    font-family: "Calibri", sans-serif;
+    font-family: "Helvetica", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-#container {
+.clickable,
+input[type=range] {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.colors-container {
+    display: flex;
+    align-items: center;
+    margin-left: 64px;
+}
+
+.picker {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 24px 8px;
     width: 100%;
-    position: absolute;
-    top: -50%;
-    transform: translateY(50%);
-    height: 100%;
+    max-width: 512px;
+}
+
+.main-color {
+    display: inline-block;
+    width: 216px;
+    height: 216px;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-}
-
-#picker {
-    display: inline-block;
-    padding: 5%;
-}
-
-#color {
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
     background: #ddd;
     border: 8px solid rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     font-size: 1.3em;
 }
 
-#inner-color span {
-    width: 150px;
+.inner-color {
+    text-align: center;
 }
 
-#color.light, #scheme .color.light {
-    color: #222;
+.main-color-hex,
+.main-color-name {
+    /* width: 150px; */
+    text-align: center;
 }
 
-#color.dark, #scheme .color.dark {
-    color: #ccc;
+.main-color-name {
+    margin-top: 3px;
 }
 
-#colorHex {
+.color[data-is-dark=light] {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.color[data-is-dark=dark] {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.main-color-hex {
     display: none;
 }
 
-#scheme {
-    display: none;
-    margin-left: 20px;
-    border: 0 solid #f4f4f4;
+.main-color-hex {
+    border: 0;
+    outline: 0;
+    font: inherit;
+    color: inherit;
+    background: none;
+    width: 8ch;
+    border-bottom: 2px solid transparent;
 }
 
-#scheme .color {
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
+.main-color-hex.editable:hover {
+    border-bottom-color: rgba(240, 240, 240, 0.5);
+}
+
+.main-color-hex.editable.invalid {
+    border-bottom-color: rgba(250, 20, 20, 0.8);
+}
+
+.clickable .main-color-hex:not(.editable) {
+    cursor: pointer;
+}
+
+.scheme {
+    display: none;
+    margin-left: 32px;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    height: 432px;
+}
+
+.scheme .color {
+    width: 120px;
+    height: 120px;
     background: #ddd;
     border: 6px solid rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-    text-align: center;
-    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#scheme .color:nth-child(2) {
-    margin-left: 60px;
+.scheme .color:nth-child(2) {
+    margin-left: 72px;
 }
 
-#picker input {
+.picker input {
     outline: 0;
 }
 
-#picker input[type=range] {
+.picker input[type=range] {
     -webkit-appearance: none;
-    margin: 10px;
-    width: 410px;
-    height: 22px;
     background: #888;
-    border-radius: 11px;
+    border-radius: 100px;
+    width: 100%;
 }
 
-#hue {
+.picker .hue {
     background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
 }
 
-#saturation {
+.picker .saturation {
     background: linear-gradient(to right, hsl(180, 0%, 50%), hsl(180, 100%, 50%));
 }
 
-#lightness {
+.picker .lightness {
     background: linear-gradient(to right, hsl(180, 100%, 0%), hsl(180, 100%, 50%), hsl(180, 100%, 100%));
 }
 
 ::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
     border: 5px solid rgba(0, 0, 0, 0.7);
     border-radius: 50%;
     transition: 0.2s;
 }
 
-::-webkit-slider-thumb:hover {
-    border: 5px solid #111;
+.dark ::-webkit-slider-thumb {
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
-#picker input[type=number] {
-    width: 50px;
-    padding: 3px 7px;
+::-webkit-slider-thumb:hover {
+    border: 5px solid rgba(0, 0, 0, 0.9);
+}
+
+.dark ::-webkit-slider-thumb:hover {
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.picker input[type=number] {
+    width: 60px;
+    padding: 2px 5px;
     background: transparent;
     border: 0;
     font-size: 1.1em;
     font-family: inherit;
 }
 
-#picker input[type=number]::-webkit-inner-spin-button, #picker input[type=number]::-webkit-outer-spin-button {
+.picker input[type=number]::-webkit-inner-spin-button,
+.picker input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.light #picker input[type=number] {
+.light .picker input[type=number] {
     color: #111;
 }
 
-.dark #picker input[type=number] {
+.dark .picker input[type=number] {
     color: #ccc;
 }
 
+
 /* THE ELEMENTS BELOW HERE ARE BOTH POSITION ABSOLUTE */
 
-#random {
+.random {
     position: absolute;
     display: none;
     top: 50%;
@@ -156,24 +219,24 @@ body {
     transition: 0.3s;
 }
 
-.dark #random {
+.dark .random {
     border-color: rgba(250, 250, 250, 0.2);
     color: rgba(250, 250, 250, 0.6);
 }
 
-#random:hover {
+.random:hover {
     background: rgba(20, 20, 20, 0.1);
 }
 
-.dark #random:hover {
+.dark .random:hover {
     background: rgba(200, 200, 200, 0.1);
 }
 
-#random:focus {
+.random:focus {
     color: #0a1dad;
 }
 
-#settings {
+.settings {
     position: absolute;
     display: none;
     bottom: 8px;
@@ -186,10 +249,10 @@ body {
     transition: 0.3s;
 }
 
-.dark #settings {
+.dark .settings {
     color: #fff;
 }
 
-#settings:hover {
+.settings:hover {
     opacity: 1;
 }

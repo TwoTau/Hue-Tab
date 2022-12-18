@@ -2,143 +2,136 @@
 <html lang="en-US">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Hue Tab Settings</title>
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-	<link href="options.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Hue Tab Settings</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="no-referrer">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="options.css" rel="stylesheet">
 </head>
 
 <body>
-	<header>
-		<img src="icon.png" alt="Hue Tab logo" height="45">
-		<h1><a href="https://github.com/TwoTau/Hue-Tab">Hue Tab</a> Settings</h1>
-	</header>
+    <header>
+        <img src="icon.png" alt="Hue Tab logo" height="45" width="45">
+        <h1><a href="https://github.com/TwoTau/Hue-Tab">Hue Tab</a> Settings</h1>
+    </header>
 
-	<div id="group-container">
+    <div id="group-container">
 
-		<div class="group">
-			<div class="group-name">
-				<h3>Color Sample</h3>
-			</div>
-			<div class="group-content">
-				<input type="checkbox" id="click-bg-change"><label for="click-bg-change">Click sample to set background
-					color</label>
-				<br>
-				<input type="checkbox" id="sample-hex-visible"><label for="sample-hex-visible">Show hexcode</label>
-				<br>
-				<input type="checkbox" id="sample-name-visible"><label for="sample-name-visible">Show color name</label>
-			</div>
-		</div>
+        <div class="group">
+            <div class="group-name">
+                <h3>Color Sample</h3>
+            </div>
+            <div class="group-content">
+                <input type="checkbox" id="click-bg-change"><label for="click-bg-change">Click sample to set background</label>
+                <br>
+                <input type="checkbox" id="sample-hex-visible"><label for="sample-hex-visible">Show hexcode</label>
+                <br>
+                <input type="checkbox" id="sample-hex-copyable"><label for="sample-hex-copyable">Click to copy hexcode</label>
+                <br>
+                <input type="checkbox" id="sample-hex-editable"><label for="sample-hex-editable">Editable hexcode</label>
+                <br>
+                <input type="checkbox" id="sample-name-visible"><label for="sample-name-visible">Show color name</label>
+            </div>
+        </div>
 
-		<div class="group">
-			<div class="group-name">
-				<h3>Color Scheme</h3>
-			</div>
-			<div class="group-content">
-				<input type="checkbox" id="scheme-visible"><label for="scheme-visible">Show color scheme</label>
-				<br>
-				<input type="checkbox" id="scheme-hex-visible"><label for="scheme-hex-visible">Hex visible</label>
-				<br>
-				<input type="checkbox" id="scheme-click-sample-change"><label for="scheme-click-sample-change">Click
+        <div class="group">
+            <div class="group-name">
+                <h3>Color Scheme</h3>
+            </div>
+            <div class="group-content">
+                <input type="checkbox" id="scheme-visible"><label for="scheme-visible">Show color scheme</label>
+                <br>
+                <input type="checkbox" id="scheme-hex-visible"><label for="scheme-hex-visible">Hex visible</label>
+                <br>
+                <input type="checkbox" id="scheme-click-sample-change"><label for="scheme-click-sample-change">Click
 					color to set sample color</label>
-				<br>
-				<input type="checkbox" id="scheme-click-bg-change"><label for="scheme-click-bg-change">Click color to
+                <br>
+                <input type="checkbox" id="scheme-click-bg-change"><label for="scheme-click-bg-change">Click color to
 					set background color</label>
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<div class="group">
-			<div class="group-name">
-				<h3>Starting colors</h3>
-			</div>
-			<div class="group-content">
-				<h4>Color on start</h4>
+        <div class="group">
+            <div class="group-name">
+                <h3>Starting colors</h3>
+            </div>
+            <div class="group-content">
+                <h4>Color on start</h4>
 
-				<input type="radio" id="random-on-start" name="start-color" value="random"><label
-					for="random-on-start">Random</label>
-				<br>
-				<input type="radio" id="custom-on-start" name="start-color" value="custom"><label
-					for="custom-on-start">Custom <input type="color" id="start-color-custom"></label>
+                <input type="radio" id="random-on-start" name="start-color" value="random"><label for="random-on-start">Random</label>
+                <br>
+                <input type="radio" id="custom-on-start" name="start-color" value="custom"><label for="custom-on-start">Custom <input type="color" id="start-color-custom"></label>
 
-				<br><br>
+                <br><br>
 
-				<h4>Background color on start</h4>
+                <h4>Background color on start</h4>
 
-				<input type="radio" id="random-bg-on-start" name="start-bg" value="random"><label
-					for="random-bg-on-start">Random</label>
-				<br>
-				<input type="radio" id="match-bg-on-start" name="start-bg" value="match"><label
-					for="match-bg-on-start">Match start color</label>
-				<br>
-				<input type="radio" id="custom-bg-on-start" name="start-bg" value="custom"><label
-					for="custom-bg-on-start">Custom <input type="color" id="start-bg-custom"></label>
+                <input type="radio" id="random-bg-on-start" name="start-bg" value="random"><label for="random-bg-on-start">Random</label>
+                <br>
+                <input type="radio" id="match-bg-on-start" name="start-bg" value="match"><label for="match-bg-on-start">Match start color</label>
+                <br>
+                <input type="radio" id="custom-bg-on-start" name="start-bg" value="custom"><label for="custom-bg-on-start">Custom <input type="color" id="start-bg-custom"></label>
 
-				<br><br>
+                <br><br>
 
-				<h4>Background color if incognito</h4>
+                <h4>Background color if incognito</h4>
 
-				<input type="radio" id="random-bg-on-incognito" name="start-bg-incognito" value="random"><label
-					for="random-bg-on-incognito">Random</label>
-				<br>
-				<input type="radio" id="match-bg-on-incognito" name="start-bg-incognito" value="match"><label
-					for="match-bg-on-incognito">Match start color</label>
-				<br>
-				<input type="radio" id="dark-bg-on-incognito" name="start-bg-incognito" value="match"><label
-					for="dark-bg-on-incognito" title="#222">Dark gray <span id="dark-gray">■</span></label>
-				<br>
-				<input type="radio" id="custom-bg-on-incognito" name="start-bg-incognito" value="custom"><label
-					for="custom-bg-on-incognito">Custom <input type="color" id="incognito-bg-custom"></label>
-			</div>
-		</div>
+                <input type="radio" id="random-bg-on-incognito" name="start-bg-incognito" value="random"><label for="random-bg-on-incognito">Random</label>
+                <br>
+                <input type="radio" id="match-bg-on-incognito" name="start-bg-incognito" value="match"><label for="match-bg-on-incognito">Match start color</label>
+                <br>
+                <input type="radio" id="dark-bg-on-incognito" name="start-bg-incognito" value="match"><label for="dark-bg-on-incognito" title="#222">Dark gray <span id="dark-gray">■</span></label>
+                <br>
+                <input type="radio" id="custom-bg-on-incognito" name="start-bg-incognito" value="custom"><label for="custom-bg-on-incognito">Custom <input type="color" id="incognito-bg-custom"></label>
+            </div>
+        </div>
 
-		<div class="group">
-			<div class="group-name">
-				<h3>Buttons</h3>
-			</div>
-			<div class="group-content">
-				<input type="checkbox" id="random-visible"><label for="random-visible">Random button visible</label>
-				<br>
-				<input type="checkbox" id="settings-visible"><label for="settings-visible">Settings button
+        <div class="group">
+            <div class="group-name">
+                <h3>Buttons</h3>
+            </div>
+            <div class="group-content">
+                <input type="checkbox" id="random-visible"><label for="random-visible">Random button visible</label>
+                <br>
+                <input type="checkbox" id="settings-visible"><label for="settings-visible">Settings button
 					visible</label>
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<div class="group">
-			<div class="group-name">
-				<h3>Text</h3>
-			</div>
-			<div class="group-content">
-				<label for="font-family">Font family:</label><input type="text" id="font-family" value="Open Sans">
-				<br>
-				<label for="font-size">Font size (%):</label><input type="number" id="font-size" min="10" max="300"
-					step="5" value="100">
-				<br>
-				<input type="checkbox" id="uppercase-hex"><label for="uppercase-hex"
-					title="#B20FFF instead of #b20fff">Uppercase hexes</label>
-			</div>
-		</div>
+        <div class="group">
+            <div class="group-name">
+                <h3>Text</h3>
+            </div>
+            <div class="group-content">
+                <label for="font-family">Font family:</label><input type="text" id="font-family" value="Helvetica" placeholder="Helvetica">
+                <br>
+                <label for="font-size">Font size (%):</label><input type="number" id="font-size" min="10" max="300" step="5" value="100">
+                <br>
+                <input type="checkbox" id="uppercase-hex"><label for="uppercase-hex" title="#B20FFF instead of #b20fff">Uppercase hexes</label>
+            </div>
+        </div>
 
-		<div class="group" id="about">
-			<div class="group-name">
-				<h3>About</h3>
-			</div>
-			<div class="group-content">
-				<ul>
-					<li><a href="https://github.com/TwoTau/Hue-Tab">Source on GitHub</a></li>
-					<li><a href="https://chrome.google.com/webstore/detail/hue-tab/mhpnoeopnoemnkkklmmmpjecilooeaoe">App
-							store</a></li>
-					<li><a href="https://en.wikipedia.org/wiki/HSL_and_HSV" title="Wikipedia link">What is HSL?</a></li>
-					<li><a href="http://chir.ag/projects/ntc/" title="Name that Color library">ntc.js (color naming)</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+        <div class="group" id="about">
+            <div class="group-name">
+                <h3>About</h3>
+            </div>
+            <div class="group-content">
+                <ul>
+                    <li><a href="https://github.com/TwoTau/Hue-Tab">Source on GitHub</a></li>
+                    <li><a href="https://chrome.google.com/webstore/detail/hue-tab/mhpnoeopnoemnkkklmmmpjecilooeaoe">App store</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/HSL_and_HSV" title="Wikipedia link">What is HSL?</a></li>
+                    <li><a href="http://chir.ag/projects/ntc/" title="Name that Color library">ntc.js (color naming)</a></li>
+                </ul>
+            </div>
+        </div>
 
-	</div>
+    </div>
 
-	<div id="saved-banner">Saved!</div>
+    <div id="saved-banner">Saved!</div>
 
-	<script src="options.js"></script>
+    <script src="options.js"></script>
 </body>
 
 </html>

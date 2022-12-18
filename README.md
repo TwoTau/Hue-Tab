@@ -22,6 +22,8 @@ For example, `hsl(120, 50%, 50%)` is a moderate lime green, which would be `#40B
 
 ## Options
 
+Defaults checked.
+
 ### Color sample
 - [x] Click sample to set background color
 - [x] Show hexcode
